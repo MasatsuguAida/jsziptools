@@ -24,7 +24,7 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/underscore.js"></script>
     <script type="text/javascript" src="static/doctools.js"></script>
-    <link rel="top" title="jsziptools 2.0 documentation" href="#" /> 
+    <link rel="top" title="jsziptools 2.0 documentation" href="index.html" /> 
   </head>
   <body>
     <div class="related">
@@ -33,7 +33,7 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
-        <li><a href="#">jsziptools 2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">jsziptools 2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -44,17 +44,21 @@
             
   <div class="section" id="jsziptools-api-reference">
 <h1>JSZIPTOOLS API REFERENCE<a class="headerlink" href="#jsziptools-api-reference" title="Permalink to this headline">¶</a></h1>
-<p>This documnentation explaines all API of <a class="reference external" href="https://github.com/ukyo/jsziptools">jsziptools</a></p>
-<p><a class="reference external" href="index_jp.html">Japanese</a></p>
+<p><a class="reference external" href="https://github.com/ukyo/jsziptools">jsziptools</a> のAPIリファレンスです。</p>
 <div class="section" id="jz-algorithms">
 <h2>jz.algorithms<a class="headerlink" href="#jz-algorithms" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="#jz-algorithms">jz.algorithms</a> are implementations of deflate compression algorithm is defined in <a class="reference external" href="http://tools.ietf.org/html/rfc1951">RFC 1951</a>
-and adler32 and crc32 check sum algorithms.
-<a class="reference internal" href="#jz-zlib">jz.zlib</a> , <a class="reference internal" href="#jz-gz">jz.gz</a> and <a class="reference internal" href="#jz-zip">jz.zip</a> use these functions.
-Ofcourse you can use these functions directry.</p>
+<p><a class="reference external" href="http://tools.ietf.org/html/rfc1951">RFC 1951</a> で定義されているdeflateの圧縮、伸張(とデータのチェック)の実装です。
+<a class="reference internal" href="#jz-zlib">jz.zlib</a> , <a class="reference internal" href="#jz-gz">jz.gz</a> , <a class="reference internal" href="#jz-zip">jz.zip</a> で使用されます。
+もちろんこれらの関数を直接使用することもできます( <tt class="docutils literal"><span class="pre">indexDB</span></tt> , <tt class="docutils literal"><span class="pre">webstorage</span></tt> に保存するときに有効かもしれません)。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">deflateは <a class="reference external" href="http://www.zlib.net/">zlib</a> を <a class="reference external" href="https://github.com/kripken/emscripten">emscripten</a>
+で変換したものを使用しています。
+inflateは <a class="reference external" href="https://github.com/mozilla/pdf.js">pdf.js</a> のものを使用しています。</p>
+</div>
 <div class="section" id="jz-algorithms-adler32">
 <h3>jz.algorithms.adler32<a class="headerlink" href="#jz-algorithms-adler32" title="Permalink to this headline">¶</a></h3>
-<p>Calculate adler32 check sum.</p>
+<p>圧縮前のバイト列からadler32チェックサムを計算します。</p>
 <dl class="function">
 <dt id="jz.algorithms.adler32">
 <tt class="descclassname">jz.algorithms.</tt><tt class="descname">adler32</tt><big>(</big><em>bytes</em><big>)</big><a class="headerlink" href="#jz.algorithms.adler32" title="Permalink to this definition">¶</a></dt>
@@ -63,7 +67,7 @@ Ofcourse you can use these functions directry.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; 圧縮前のバイト列</li>
 </ul>
 </td>
 </tr>
@@ -77,7 +81,7 @@ Ofcourse you can use these functions directry.</p>
 </div>
 <div class="section" id="jz-algorithms-crc32">
 <h3>jz.algorithms.crc32<a class="headerlink" href="#jz-algorithms-crc32" title="Permalink to this headline">¶</a></h3>
-<p>Calculate crc32 check sum.</p>
+<p>圧縮前のバイト列からcrc32チェックサムを計算します。</p>
 <dl class="function">
 <dt id="jz.algorithms.crc32">
 <tt class="descclassname">jz.algorithms.</tt><tt class="descname">crc32</tt><big>(</big><em>bytes</em><big>)</big><a class="headerlink" href="#jz.algorithms.crc32" title="Permalink to this definition">¶</a></dt>
@@ -86,7 +90,7 @@ Ofcourse you can use these functions directry.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array</em>) &#8211; Byte sequence</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array</em>) &#8211; 圧縮前のバイト列</li>
 </ul>
 </td>
 </tr>
@@ -108,14 +112,12 @@ Ofcourse you can use these functions directry.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
-<li><strong>level</strong> (<em>number</em>) &#8211; Compression level.
-Default value is 6.
-Range is from 0(no compression) to 9.</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; バイト列</li>
+<li><strong>level</strong> (<em>number</em>) &#8211; 圧縮レベル。省略した場合はデフォルト値として6が指定されます。範囲は0(無圧縮)〜9まで指定することができます</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a compressed data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">deflate圧縮された結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -133,11 +135,11 @@ Range is from 0(no compression) to 9.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; deflate圧縮されたバイト列</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a decompressed data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">伸張された結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -148,7 +150,8 @@ Range is from 0(no compression) to 9.</li>
 </div>
 <div class="section" id="jz-zlib">
 <h2>jz.zlib<a class="headerlink" href="#jz-zlib" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="#jz-zlib">jz.zlib</a> compress or decompress Zlib compression format files are defined in <a class="reference external" href="http://tools.ietf.org/html/rfc1950">RFC 1950</a> .</p>
+<p><a class="reference external" href="http://tools.ietf.org/html/rfc1950">RFC 1950</a> で定義されているzlib形式でファイルを圧縮、伸張します。
+内部的にzlibを使用しているものはたくさんあるので(swf,pngなど)、けっこう重宝します。</p>
 <div class="section" id="jz-zlib-compress">
 <h3>jz.zlib.compress<a class="headerlink" href="#jz-zlib-compress" title="Permalink to this headline">¶</a></h3>
 <dl class="function">
@@ -159,14 +162,12 @@ Range is from 0(no compression) to 9.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
-<li><strong>level</strong> (<em>number</em>) &#8211; Compression level.
-Default value is 6.
-Range is from 0(no compression) to 9.</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; バイト列</li>
+<li><strong>level</strong> (<em>number</em>) &#8211; 圧縮レベル。省略した場合はデフォルト値として6が指定されます。範囲は0(無圧縮)〜9まで指定することができます</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a compressed data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">zlib形式で圧縮された結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -183,28 +184,29 @@ Range is from 0(no compression) to 9.</li>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
-<li><strong>check</strong> (<em>boolean</em>) &#8211; Validate adler32 checksum if check is true.</li>
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; バイト列</li>
+<li><strong>check</strong> (<em>boolean</em>) &#8211; trueが指定されている場合、adler32 checksumが正しいかチェックを行います。デフォルト値はfalseです</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">伸張された結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p>Defalt value is false.
-:returns: Return a decompressed data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
 </dd></dl>
 
 </div>
 </div>
 <div class="section" id="jz-gz">
 <h2>jz.gz<a class="headerlink" href="#jz-gz" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="#jz-zlib">jz.zlib</a> compress or decompress gzip compression format files are defined in <a class="reference external" href="http://tools.ietf.org/html/rfc1952">RFC 1952</a> .</p>
-<p>Example:</p>
+<p><a class="reference external" href="http://tools.ietf.org/html/rfc1952">RFC 1952</a> で定義されているgzip形式のファイルの圧縮、伸張を行います。
+クライアントでgzip圧縮をしてサーバの負荷を減らすというのもありかもしれません(処理時間は巨大なファイルでもなければ無視できるレベル)。</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">xhr</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">XMLHttpRequest</span><span class="p">;</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">open</span><span class="p">(</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="s1">&#39;/upload&#39;</span><span class="p">,</span> <span class="kc">true</span><span class="p">);</span>
 
-<span class="c1">//compress and send.</span>
+<span class="c1">//gzip圧縮して送信</span>
 <span class="nx">xhr</span><span class="p">.</span><span class="nx">send</span><span class="p">(</span><span class="nx">jz</span><span class="p">.</span><span class="nx">gz</span><span class="p">.</span><span class="nx">compress</span><span class="p">(</span><span class="nx">buffer</span><span class="p">,</span> <span class="mi">9</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -218,14 +220,12 @@ Range is from 0(no compression) to 9.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
-<li><strong>level</strong> (<em>number</em>) &#8211; Compression level.
-Default value is 6.
-Range is from 0(no compression) to 9.</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; バイト列</li>
+<li><strong>level</strong> (<em>number</em>) &#8211; 圧縮レベル。省略した場合はデフォルト値として6が指定されます。範囲は0(無圧縮)〜9まで指定することができます</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a compressed data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">gzip形式で圧縮された結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -243,13 +243,12 @@ Range is from 0(no compression) to 9.</li>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; Byte sequence</li>
-<li><strong>check</strong> (<em>boolean</em>) &#8211; Validate crc32 checksum if check is true.
-Defalt value is false.</li>
+<li><strong>bytes</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; バイト列</li>
+<li><strong>check</strong> (<em>boolean</em>) &#8211; trueが指定されている場合、crc32 checksumが正しいかチェックを行います。デフォルト値はfalseです</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a decompressed data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">伸張された結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -260,11 +259,10 @@ Defalt value is false.</li>
 </div>
 <div class="section" id="jz-zip">
 <h2>jz.zip<a class="headerlink" href="#jz-zip" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="#jz-zip">jz.zip</a> pack or unpack zip format archive files.</p>
+<p>zip形式のファイルの圧縮、伸張を行います。</p>
 <div class="section" id="jz-zip-pack">
 <h3>jz.zip.pack<a class="headerlink" href="#jz-zip-pack" title="Permalink to this headline">¶</a></h3>
-<p>Convert a directory structure is represented in <a class="reference internal" href="#files">files</a> to a zip format archive
-synchronously of asynchronously.</p>
+<p><a class="reference internal" href="#files">files</a> で表現されるディレクトリ構造を同期的、非同期的にzip形式のアーカイブに変換します。</p>
 <dl class="function">
 <dt id="jz.zip.pack">
 <tt class="descclassname">jz.zip.</tt><tt class="descname">pack</tt><big>(</big><em>params</em><big>)</big><a class="headerlink" href="#jz.zip.pack" title="Permalink to this definition">¶</a></dt>
@@ -273,69 +271,67 @@ synchronously of asynchronously.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>params</strong> (<em>Object</em>) &#8211; Refer to <a class="reference internal" href="#params">params</a> .</li>
+<li><strong>params</strong> (<em>Object</em>) &#8211; <a class="reference internal" href="#params">params</a> を参照</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a data is archived <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> as if you want to run synchronously.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">同期的に実行する場合、アーカイブされた結果を <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-<p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">//synchronous</span>
+<p>例:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">//同期</span>
 <span class="kd">var</span> <span class="nx">packedSync</span> <span class="o">=</span> <span class="nx">jz</span><span class="p">.</span><span class="nx">zip</span><span class="p">.</span><span class="nx">pack</span><span class="p">({</span>
   <span class="nx">files</span><span class="o">:</span> <span class="nx">files</span><span class="p">,</span>
   <span class="nx">level</span><span class="o">:</span> <span class="mi">8</span>
 <span class="p">});</span>
 
-<span class="c1">//asynchronous: run asynchronously if you set &quot;complete&quot; to params_ .</span>
+<span class="c1">//非同期 completeを設定すると非同期になる</span>
 <span class="nx">jz</span><span class="p">.</span><span class="nx">zip</span><span class="p">.</span><span class="nx">pack</span><span class="p">({</span>
   <span class="nx">files</span><span class="o">:</span> <span class="nx">files</span><span class="p">,</span>
   <span class="nx">level</span><span class="o">:</span> <span class="mi">8</span><span class="p">,</span>
   <span class="nx">complete</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">packed</span><span class="p">){</span>
-    <span class="c1">//do something.</span>
+    <span class="c1">//なにか処理</span>
   <span class="p">}</span>
 <span class="p">});</span>
 </pre></div>
 </div>
+<p>Ajaxでファイルを読み込む必要がない場合は、同期的に処理しても問題ないでしょう。
+Ajaxで読み込む場合は非同期的に処理することをお勧めします(最近Firefoxあたりで同期読み込みができない)。</p>
 <div class="section" id="params">
 <h4>params<a class="headerlink" href="#params" title="Permalink to this headline">¶</a></h4>
 <dl class="docutils">
 <dt>files</dt>
-<dd>Refer to <a class="reference internal" href="#files">files</a> .</dd>
+<dd><a class="reference internal" href="#files">files</a> を参照</dd>
 <dt>level</dt>
-<dd>Compression level.
-Default value is 6.
-Range is from 0(no compression) to 9.</dd>
+<dd>圧縮レベル。省略した場合はデフォルト値として6が指定されます。範囲は0(無圧縮)〜9まで指定することができます</dd>
 <dt>complete</dt>
-<dd>Callback function.
-This function receive an argument is <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .
-Run synchronously if you don&#8217;t set.</dd>
+<dd>処理が完了したときに呼ばれるコールバック関数。引数には <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> を受け取る。省略した場合は同期的に処理を行う</dd>
 </dl>
 </div>
 <div class="section" id="files">
 <h4>files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h4>
-<p>Files or directories are represented in JSON.
-Files or directories have a <tt class="docutils literal"><span class="pre">name</span></tt> property repesent filename.
-Files hava a <tt class="docutils literal"><span class="pre">str</span></tt> , <tt class="docutils literal"><span class="pre">url</span></tt> or <tt class="docutils literal"><span class="pre">buffer</span></tt> property.
-Directories have a <tt class="docutils literal"><span class="pre">dir</span></tt> , <tt class="docutils literal"><span class="pre">children</span></tt> , <tt class="docutils literal"><span class="pre">folder</span></tt> (Refer to bottom text).
-Root directory isn&#8217;t Object. Use Array.</p>
+<p>JSON形式でディレクトリ構造を表現します。
+各要素はファイル名を表す <tt class="docutils literal"><span class="pre">name</span></tt> と種類に応じたプロパティを持っています。
+ルートは配列です。</p>
 <dl class="docutils">
 <dt>str</dt>
-<dd>Use string as text file&#8217;s string.</dd>
+<dd>文字列をそのままテキストファイルの中身とします</dd>
 <dt>url</dt>
-<dd>Load from target URL.</dd>
+<dd>URLから読み込んだデータをファイルの中身とします</dd>
 <dt>buffer</dt>
-<dd>Use <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> , <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> , <tt class="docutils literal"><span class="pre">Array</span></tt> .</dd>
+<dd><tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> , <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> , <tt class="docutils literal"><span class="pre">Array</span></tt> をバイト列として、それをファイルの中身とします</dd>
 <dt>dir,children,folder</dt>
-<dd>Use Array and represent directory structure.</dd>
+<dd>配列を用いてディレクトリ構造を表現します</dd>
 </dl>
-<p>Furthermore, you can set <tt class="docutils literal"><span class="pre">level</span></tt> property to Files.
-This compression level is used in preference than <a class="reference internal" href="#params">params</a>.level.</p>
-<p>Example:</p>
+<p>さらに、各要素ごとに圧縮レベルを設定することができます。
+<tt class="docutils literal"><span class="pre">level</span></tt> というプロパティを作り、0〜9までの圧縮レベルを指定してください。
+ここで設定した圧縮レベルは <a class="reference internal" href="#params">params</a> で設定したものより優先的に使用されます。
+設定しない場合は、 <a class="reference internal" href="#params">params</a> で設定したものが使用されます。</p>
+<p>例:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="p">[</span>
   <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;hello.txt&#39;</span><span class="p">,</span> <span class="nx">str</span><span class="o">:</span> <span class="s1">&#39;hello world!&#39;</span><span class="p">},</span>
   <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;dog.png&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="o">:</span> <span class="s1">&#39;./image/dog.png&#39;</span><span class="p">},</span>
@@ -360,11 +356,11 @@ This compression level is used in preference than <a class="reference internal" 
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>buffer</strong> (<em>ArrayBuffer</em>) &#8211; zip format archive</li>
+<li><strong>buffer</strong> (<em>ArrayBuffer</em>) &#8211; zip形式のアーカイブ</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a instance of <a class="reference internal" href="#jz-zip-lazyloader">jz.zip.LazyLoader</a></p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#jz-zip-lazyloader">jz.zip.LazyLoader</a> インスタンスを返します。</p>
 </td>
 </tr>
 </tbody>
@@ -374,9 +370,9 @@ This compression level is used in preference than <a class="reference internal" 
 </div>
 <div class="section" id="jz-zip-lazyloader">
 <h3>jz.zip.LazyLoader<a class="headerlink" href="#jz-zip-lazyloader" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="#jz.zip.unpack">jz.zip.unpack</a> doesn&#8217;t unpack all files at first.
-jz.zip.LazyLoader.prototype.getFileXXX load files lazy.
-You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
+<p><a class="reference internal" href="#jz.zip.unpack">jz.zip.unpack</a> ではいきなり全てを伸張せずに、
+遅延ロード(でいいんだっけ?)するための <a class="reference internal" href="#jz-zip-lazyloader">jz.zip.LazyLoader</a> クラスを提供します。
+suffixにSyncがつくメソッドはworker内だけで有効になります。</p>
 <dl class="function">
 <dt id="jz.zip.LazyLoader.prototype.getFileNames">
 <tt class="descclassname">jz.zip.LazyLoader.prototype.</tt><tt class="descname">getFileNames</tt><big>(</big><big>)</big><a class="headerlink" href="#jz.zip.LazyLoader.prototype.getFileNames" title="Permalink to this definition">¶</a></dt>
@@ -384,7 +380,7 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Return Array of file path.</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">ルートディレクトリからのフルパスのファイル名の配列を返します</td>
 </tr>
 </tbody>
 </table>
@@ -398,11 +394,11 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a unpacked file data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">伸張されたファイルを <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -417,9 +413,9 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
-<li><strong>encoding</strong> (<em>string</em>) &#8211; Text encoding. Default value is &#8220;UTF-8&#8221;.</li>
-<li><strong>callback</strong> (<em>function</em>) &#8211; Callback function。This function receive an argument is <tt class="docutils literal"><span class="pre">String</span></tt> .</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
+<li><strong>encoding</strong> (<em>string</em>) &#8211; エンコーディング、デフォルト値はUTF-8です。</li>
+<li><strong>callback</strong> (<em>function</em>) &#8211; 処理が完了したときに呼ばれるコールバック関数。引数には処理結果が文字列として渡されます</li>
 </ul>
 </td>
 </tr>
@@ -435,12 +431,12 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
-<li><strong>contentType</strong> (<em>string</em>) &#8211; Content type. set automatically if you don&#8217;t set.</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
+<li><strong>contentType</strong> (<em>string</em>) &#8211; 省略した場合は自動で割り当てます</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a unpacked file data as <tt class="docutils literal"><span class="pre">Blob</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">伸張されたファイルを <tt class="docutils literal"><span class="pre">Blob</span></tt> として返します</p>
 </td>
 </tr>
 </tbody>
@@ -455,8 +451,8 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
-<li><strong>callback</strong> (<em>function</em>) &#8211; Callback function。This function receive an argument is <tt class="docutils literal"><span class="pre">String</span></tt> (Binary String).</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
+<li><strong>callback</strong> (<em>function</em>) &#8211; 処理が完了したときに呼ばれるコールバック関数。引数には処理結果がバイナリ文字列として渡されます</li>
 </ul>
 </td>
 </tr>
@@ -472,8 +468,8 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
-<li><strong>callback</strong> (<em>function</em>) &#8211; Callback function。This function receive an argument is <tt class="docutils literal"><span class="pre">String</span></tt> (Data URL).</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
+<li><strong>callback</strong> (<em>function</em>) &#8211; 処理が完了したときに呼ばれるコールバック関数。引数には処理結果がデータURLとして渡されます</li>
 </ul>
 </td>
 </tr>
@@ -489,12 +485,12 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
-<li><strong>encoding</strong> (<em>string</em>) &#8211; Text encoding. Default value is &#8220;UTF-8&#8221;.</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
+<li><strong>encoding</strong> (<em>string</em>) &#8211; エンコーディング、デフォルト値はUTF-8です。</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a unpacked file data as <tt class="docutils literal"><span class="pre">String</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">処理結果を文字列として返します</p>
 </td>
 </tr>
 </tbody>
@@ -509,11 +505,11 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a unpacked file data as <tt class="docutils literal"><span class="pre">String</span></tt> (Binary String).</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">処理結果をバイナリ文字列として返します</p>
 </td>
 </tr>
 </tbody>
@@ -528,19 +524,19 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>filename</strong> (<em>string</em>) &#8211; File path</li>
+<li><strong>filename</strong> (<em>string</em>) &#8211; フルパスのファイル名</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a unpacked file data as <tt class="docutils literal"><span class="pre">String</span></tt> (Data URL).</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">処理結果をデータURLとして返します</p>
 </td>
 </tr>
 </tbody>
 </table>
 </dd></dl>
 
-<p>Example:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">//create zip</span>
+<p>例:</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">//zipファイルの作成</span>
 <span class="kd">var</span> <span class="nx">packed</span> <span class="o">=</span> <span class="nx">jz</span><span class="p">.</span><span class="nx">zip</span><span class="p">.</span><span class="nx">pack</span><span class="p">({</span>
   <span class="nx">files</span><span class="o">:</span> <span class="p">[</span>
     <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;hello.txt&#39;</span><span class="p">,</span> <span class="nx">str</span><span class="o">:</span> <span class="s1">&#39;hello!&#39;</span><span class="p">},</span>
@@ -551,11 +547,11 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 <span class="p">});</span>
 
 <span class="kd">var</span> <span class="nx">loader</span> <span class="o">=</span> <span class="nx">jz</span><span class="p">.</span><span class="nx">zip</span><span class="p">.</span><span class="nx">unpack</span><span class="p">(</span><span class="nx">packed</span><span class="p">);</span>
-<span class="c1">//view file paths</span>
+<span class="c1">//ファイル一覧を表示</span>
 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">loader</span><span class="p">.</span><span class="nx">getFileNames</span><span class="p">());</span>
-<span class="c1">//view hello.txt</span>
+<span class="c1">//hello.txtの中身を表示</span>
 <span class="nx">loader</span><span class="p">.</span><span class="nx">getFileAsText</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">,</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">);</span>
-<span class="c1">//view hoge.png</span>
+<span class="c1">//hoge.pngの表示</span>
 <span class="nx">loader</span><span class="p">.</span><span class="nx">getFileAsDataURL</span><span class="p">(</span><span class="s1">&#39;sub/hoge.png&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">dataurl</span><span class="p">){</span>
   <span class="kd">var</span> <span class="nx">image</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;image&quot;</span><span class="p">);</span>
   <span class="nx">image</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">dataurl</span><span class="p">;</span>
@@ -566,11 +562,11 @@ You can use methods have &#8216;Sync&#8217; suffix in the worker.</p>
 </div>
 <div class="section" id="jz-utils">
 <h2>jz.utils<a class="headerlink" href="#jz-utils" title="Permalink to this headline">¶</a></h2>
-<p>Utility functions.</p>
+<p>便利な関数たち。</p>
 <div class="section" id="jz-utils-tobytes">
 <h3>jz.utils.toBytes<a class="headerlink" href="#jz-utils-tobytes" title="Permalink to this headline">¶</a></h3>
-<p>Convert from <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> , <tt class="docutils literal"><span class="pre">Array</span></tt> or <tt class="docutils literal"><span class="pre">String</span></tt> to <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> .
-Return a original data if argument is <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> .</p>
+<p><tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> , <tt class="docutils literal"><span class="pre">Array</span></tt> , <tt class="docutils literal"><span class="pre">String</span></tt> を <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> に変換します。
+引数のタイプがUint8Arrayの場合はそのまま返します(コピーされない)。</p>
 <dl class="function">
 <dt id="jz.utils.toBytes">
 <tt class="descclassname">jz.utils.</tt><tt class="descname">toBytes</tt><big>(</big><em>buffer</em><big>)</big><a class="headerlink" href="#jz.utils.toBytes" title="Permalink to this definition">¶</a></dt>
@@ -579,7 +575,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>buffer</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; byte sequence.</li>
+<li><strong>buffer</strong> (<em>ArrayBuffer|Uint8Array|Array|string</em>) &#8211; </li>
 </ul>
 </td>
 </tr>
@@ -593,7 +589,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 </div>
 <div class="section" id="jz-utils-stringtoarraybuffer">
 <h3>jz.utils.stringToArrayBuffer<a class="headerlink" href="#jz-utils-stringtoarraybuffer" title="Permalink to this headline">¶</a></h3>
-<p>Convert from <tt class="docutils literal"><span class="pre">String</span></tt> as UTF8 to <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<p>文字列をUTF8として <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> に変換します。もちろん日本語も変換できます。</p>
 <dl class="function">
 <dt id="jz.utils.stringToArrayBuffer">
 <tt class="descclassname">jz.utils.</tt><tt class="descname">stringToArrayBuffer</tt><big>(</big><em>str</em><big>)</big><a class="headerlink" href="#jz.utils.stringToArrayBuffer" title="Permalink to this definition">¶</a></dt>
@@ -606,7 +602,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a converted data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">変換された結果をArrayBufferとして返します。</p>
 </td>
 </tr>
 </tbody>
@@ -616,7 +612,8 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 </div>
 <div class="section" id="jz-utils-loadsync">
 <h3>jz.utils.loadSync<a class="headerlink" href="#jz-utils-loadsync" title="Permalink to this headline">¶</a></h3>
-<p>Load a file synchronously.</p>
+<p>Ajaxで同期的にバイナリファイルを読み込みます。
+本当は非推奨なんですが。</p>
 <dl class="function">
 <dt id="jz.utils.loadSync">
 <tt class="descclassname">jz.utils.</tt><tt class="descname">loadSync</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#jz.utils.loadSync" title="Permalink to this definition">¶</a></dt>
@@ -625,11 +622,11 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>url</strong> (<em>string</em>) &#8211; File URL</li>
+<li><strong>url</strong> (<em>string</em>) &#8211; 読み込むファイルのURL</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return a data as <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">読み込まれたファイルをArrayBufferとして返します</p>
 </td>
 </tr>
 </tbody>
@@ -639,7 +636,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 </div>
 <div class="section" id="jz-utils-load">
 <h3>jz.utils.load<a class="headerlink" href="#jz-utils-load" title="Permalink to this headline">¶</a></h3>
-<p>Load files asynchronously.</p>
+<p>Ajaxで非同期的にバイナリファイルを読み込みます。複数ファイルの指定が可能です</p>
 <dl class="function">
 <dt id="jz.utils.load">
 <tt class="descclassname">jz.utils.</tt><tt class="descname">load</tt><big>(</big><em>url</em>, <em>complete</em><big>)</big><a class="headerlink" href="#jz.utils.load" title="Permalink to this definition">¶</a></dt>
@@ -647,10 +644,13 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first last simple">
-<li><strong>urls</strong> (<em>string|Array.&lt;string&gt;</em>) &#8211; File URL</li>
-<li><strong>complete</strong> (<em>function(...ArrayBuffer)</em>) &#8211; Callback function.</li>
+<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
+<li><strong>urls</strong> (<em>string|Array.&lt;string&gt;</em>) &#8211; 読み込むファイルのURL</li>
+<li><strong>complete</strong> (<em>function(...ArrayBuffer)</em>) &#8211; 読み込み完了時に呼ばれるコールバック関数</li>
 </ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">読み込まれたファイルをArrayBufferとして返します</p>
 </td>
 </tr>
 </tbody>
@@ -659,14 +659,15 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 
 <p>例:</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="nx">jz</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">load</span><span class="p">([</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;hoge.txt&#39;</span><span class="p">],</span> <span class="kd">function</span><span class="p">(</span><span class="nx">hello</span><span class="p">,</span> <span class="nx">hoge</span><span class="p">){</span>
-  <span class="c1">//do something.</span>
+  <span class="c1">//何か処理</span>
 <span class="p">});</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="jz-utils-concatbytearrays">
 <h3>jz.utils.concatByteArrays<a class="headerlink" href="#jz-utils-concatbytearrays" title="Permalink to this headline">¶</a></h3>
-<p>Concat byte sequences.</p>
+<p>複数のバイト列を一つのバイト列にまとめます。
+ネイティブのAPIを使っているので高速です(多分)。</p>
 <dl class="function">
 <dt id="jz.utils.concatByteArrays">
 <tt class="descclassname">jz.utils.</tt><tt class="descname">concatByteArrays</tt><big>(</big><em>byteArrays</em><big>)</big><a class="headerlink" href="#jz.utils.concatByteArrays" title="Permalink to this definition">¶</a></dt>
@@ -675,11 +676,11 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>byteArrays</strong> (<em>...Uint8Array</em>) &#8211; Byte sequences</li>
+<li><strong>byteArrays</strong> (<em>...Uint8Array</em>) &#8211; 可変引数か配列でバイト列を与えます</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">Return concated byte sequence as <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> .</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">連結された結果をUint8Arrayとして返します</p>
 </td>
 </tr>
 </tbody>
@@ -687,7 +688,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 </dd></dl>
 
 <p>例:</p>
-<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">//same mean.</span>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="c1">//上と下は同じ意味</span>
 <span class="kd">var</span> <span class="nx">concated</span> <span class="o">=</span> <span class="nx">jz</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">concatByteArrays</span><span class="p">([</span><span class="nx">bytes1</span><span class="p">,</span> <span class="nx">bytes2</span><span class="p">,</span> <span class="nx">bytes3</span><span class="p">]);</span>
 <span class="kd">var</span> <span class="nx">concated</span> <span class="o">=</span> <span class="nx">jz</span><span class="p">.</span><span class="nx">utils</span><span class="p">.</span><span class="nx">concatByteArrays</span><span class="p">(</span><span class="nx">bytes1</span><span class="p">,</span> <span class="nx">bytes2</span><span class="p">,</span> <span class="nx">bytes3</span><span class="p">);</span>
 </pre></div>
@@ -702,7 +703,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="#">Table Of Contents</a></h3>
+  <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">JSZIPTOOLS API REFERENCE</a><ul>
 <li><a class="reference internal" href="#jz-algorithms">jz.algorithms</a><ul>
@@ -746,7 +747,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
 
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="sources/index.txt"
+    <li><a href="sources/index_jp.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -772,7 +773,7 @@ Return a original data if argument is <tt class="docutils literal"><span class="
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
-        <li><a href="#">jsziptools 2.0 documentation</a> &raquo;</li> 
+        <li><a href="index.html">jsziptools 2.0 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">
