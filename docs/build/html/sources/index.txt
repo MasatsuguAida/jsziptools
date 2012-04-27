@@ -8,16 +8,6 @@ JSZIPTOOLS API REFERENCE
 
 `jsziptools <https://github.com/ukyo/jsziptools>`_ のAPIリファレンスです。
 
-Initialize
-----------
-
-`ffDataView <https://github.com/ukyo/ffDataView>`_ と `jsziptools <https://github.com/ukyo/jsziptools>`_ を読み込むだけです。
-
-.. code-block:: html
-
-   <script src="path/to/dataview.min.js"></script>
-   <script src="path/to/jsziptools.min.js"></script>
-   
 jz.algorithms
 -------------
 

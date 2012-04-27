@@ -27,12 +27,22 @@ span.pre {
 	font-family: 'Open Sans Condensed';
 }
 
+.body h2,
+.body h3,
+.body h4,
+.body h5 {
+	border-bottom: 1px solid #ddd;
+	line-height: 1.6em;
+}
+
 .footer {
 	text-align: center;
 }
+
 a {
 	color: #175783;
 }
+
 .body h1 {font-size: 3em;}
 .body h2 {font-size: 1.7em;}
 .body h3 {font-size: 1.5em;}
