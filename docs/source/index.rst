@@ -363,30 +363,17 @@ Return a original data if argument is ``Uint8Array`` .
    :param ArrayBuffer|Uint8Array|Array|string buffer: byte sequence.
    :returns: Uint8Array
 
-jz.utils.stringToArrayBuffer
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+jz.utils.stringToBytes
+~~~~~~~~~~~~~~~~~~~~~~
 
-.. 文字列をUTF8として ``ArrayBuffer`` に変換します。もちろん日本語も変換できます。
+.. 文字列をUTF8として ``Uint8Array`` に変換します。もちろん日本語も変換できます。
 
-Convert from ``String`` as UTF8 to ``ArrayBuffer`` .
+Convert from ``String`` as UTF8 to ``Uint8Array`` .
  
-.. js:function:: jz.utils.stringToArrayBuffer(str)
+.. js:function:: jz.utils.stringToBytes(str)
 
    :param string str:
-   :returns: Return a converted data as ``ArrayBuffer`` .
-
-jz.utils.loadSync
-~~~~~~~~~~~~~~~~~
-
-.. Ajaxで同期的にバイナリファイルを読み込みます。
- 本当は非推奨なんですが。
-
-Load a file synchronously.
-
-.. js:function:: jz.utils.loadSync(url)
-
-   :param string url: File URL
-   :returns: Return a data as ``ArrayBuffer`` .
+   :returns: Return a converted data as ``Uint8Array`` .
 
 jz.utils.load
 ~~~~~~~~~~~~~

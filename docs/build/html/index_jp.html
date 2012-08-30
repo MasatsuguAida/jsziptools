@@ -587,12 +587,12 @@ suffixにSyncがつくメソッドはworker内だけで有効になります。<
 </dd></dl>
 
 </div>
-<div class="section" id="jz-utils-stringtoarraybuffer">
-<h3>jz.utils.stringToArrayBuffer<a class="headerlink" href="#jz-utils-stringtoarraybuffer" title="Permalink to this headline">¶</a></h3>
-<p>文字列をUTF8として <tt class="docutils literal"><span class="pre">ArrayBuffer</span></tt> に変換します。もちろん日本語も変換できます。</p>
+<div class="section" id="jz-utils-stringtobytes">
+<h3>jz.utils.stringToBytes<a class="headerlink" href="#jz-utils-stringtobytes" title="Permalink to this headline">¶</a></h3>
+<p>文字列をUTF8として <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> に変換します。もちろん日本語も変換できます。</p>
 <dl class="function">
-<dt id="jz.utils.stringToArrayBuffer">
-<tt class="descclassname">jz.utils.</tt><tt class="descname">stringToArrayBuffer</tt><big>(</big><em>str</em><big>)</big><a class="headerlink" href="#jz.utils.stringToArrayBuffer" title="Permalink to this definition">¶</a></dt>
+<dt id="jz.utils.stringToBytes">
+<tt class="descclassname">jz.utils.</tt><tt class="descname">stringToBytes</tt><big>(</big><em>str</em><big>)</big><a class="headerlink" href="#jz.utils.stringToBytes" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -602,31 +602,7 @@ suffixにSyncがつくメソッドはworker内だけで有効になります。<
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">変換された結果をArrayBufferとして返します。</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</div>
-<div class="section" id="jz-utils-loadsync">
-<h3>jz.utils.loadSync<a class="headerlink" href="#jz-utils-loadsync" title="Permalink to this headline">¶</a></h3>
-<p>Ajaxで同期的にバイナリファイルを読み込みます。
-本当は非推奨なんですが。</p>
-<dl class="function">
-<dt id="jz.utils.loadSync">
-<tt class="descclassname">jz.utils.</tt><tt class="descname">loadSync</tt><big>(</big><em>url</em><big>)</big><a class="headerlink" href="#jz.utils.loadSync" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Arguments:</th><td class="field-body"><ul class="first simple">
-<li><strong>url</strong> (<em>string</em>) &#8211; 読み込むファイルのURL</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">読み込まれたファイルをArrayBufferとして返します</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">変換された結果を <tt class="docutils literal"><span class="pre">Uint8Array</span></tt> として返します。</p>
 </td>
 </tr>
 </tbody>
@@ -735,8 +711,7 @@ suffixにSyncがつくメソッドはworker内だけで有効になります。<
 </li>
 <li><a class="reference internal" href="#jz-utils">jz.utils</a><ul>
 <li><a class="reference internal" href="#jz-utils-tobytes">jz.utils.toBytes</a></li>
-<li><a class="reference internal" href="#jz-utils-stringtoarraybuffer">jz.utils.stringToArrayBuffer</a></li>
-<li><a class="reference internal" href="#jz-utils-loadsync">jz.utils.loadSync</a></li>
+<li><a class="reference internal" href="#jz-utils-stringtobytes">jz.utils.stringToBytes</a></li>
 <li><a class="reference internal" href="#jz-utils-load">jz.utils.load</a></li>
 <li><a class="reference internal" href="#jz-utils-concatbytearrays">jz.utils.concatByteArrays</a></li>
 </ul>
@@ -778,7 +753,7 @@ suffixにSyncがつくメソッドはworker内だけで有効になります。<
     </div>
     <div class="footer">
         &copy; Copyright 2012, Syu Kato.
-      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.2.
     </div>
   </body>
 </html>
